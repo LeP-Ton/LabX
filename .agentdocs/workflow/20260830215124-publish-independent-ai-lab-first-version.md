@@ -26,8 +26,8 @@
 - [x] 完成格式、Lint、类型、单元/组件测试、生产构建和端到端测试。
 - [x] 恢复 `LeP-Ton` GitHub CLI 登录。
 - [x] 创建公开空仓库 `LeP-Ton/LabX` 并配置 `origin`。
-- [ ] 创建根提交并推送 `main`。
-- [ ] 验证远程提交、仓库可见性与首次 GitHub Actions。
+- [x] 创建根提交并推送 `main`。
+- [x] 验证远程提交、仓库可见性与首次 GitHub Actions。
 
 ## 关键风险
 
@@ -41,8 +41,9 @@
 - 当前生效的公开页面和元数据已统一为独立 AI 实验室定位。
 - 六个模块页使用 `LABX APPLICATION FIELD`，首页索引使用 `APPLICATION FIELDS`。
 - 《余响纪元》等演示内容已使用“跨领域 AI 实验”语气。
-- GitHub 公开仓库已创建并保持为空，等待本地根提交完成后推送。
-- `origin` 已指向 `https://github.com/LeP-Ton/LabX.git`。
+- GitHub 公开仓库已发布首版，根提交为 `c060a560d24fd285f38620a6dba7ea68fcc8cb89`。
+- `main` 已跟踪 `origin/main`，首次 GitHub Actions“质量检查”已通过。
+- `origin` 指向 `https://github.com/LeP-Ton/LabX.git`。
 
 ## 代码变更
 
@@ -331,7 +332,7 @@ diff --git a/.agentdocs/index.md b/.agentdocs/index.md
 +- 实验室网站 MVP 已完成：六个应用领域均有演示项目，内容详情与跨领域关联可用，黑白主题、SEO、匿名外链事件和隐私说明已经接入。
 @@
 - 当前仓库尚未配置 Git remote 与 Vercel 项目绑定；代码已经具备 Vercel 构建与 GitHub Actions 持续集成配置。
-+- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，当前工作区已配置 `origin`；Vercel 尚未绑定，代码已经具备 Vercel 构建与 GitHub Actions 持续集成配置。
++- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，`main` 已发布并跟踪 `origin/main`，GitHub Actions 质量检查已通过；Vercel 尚未绑定。
 ```
 
 ### `tests/positioning.test.ts`
@@ -479,7 +480,7 @@ diff --git a/tests/e2e/portal.spec.ts b/tests/e2e/portal.spec.ts
 - 优先级：高
 - 操作步骤：检查仓库可见性、远程 URL、本地与远程提交哈希及首次 GitHub Actions。
 - 预期结果：`LeP-Ton/LabX` 为公开仓库，`main` 跟踪 `origin/main`，本地与远程哈希一致，质量检查通过。
-- 是否通过：待推送后验证。
+- 是否通过：通过。
 
 ## 验证结果
 
@@ -490,4 +491,7 @@ diff --git a/tests/e2e/portal.spec.ts b/tests/e2e/portal.spec.ts
 - `pnpm build`：通过，21 个静态/SSG 页面全部生成成功。
 - `pnpm test:e2e`：通过，7 项通过、1 项按桌面环境正常跳过。
 - GitHub CLI：已登录 `LeP-Ton`，使用 HTTPS Git 协议。
-- GitHub 仓库：`LeP-Ton/LabX` 已创建为公开空仓库，描述已设置，尚未推送提交。
+- GitHub 仓库：`LeP-Ton/LabX` 已公开发布，默认分支为 `main`，仓库描述与计划一致。
+- Git 提交：根提交 `c060a560d24fd285f38620a6dba7ea68fcc8cb89` 已推送，本地 `HEAD` 与 `origin/main` 一致。
+- GitHub Actions：首次“质量检查”通过，运行记录为 `https://github.com/LeP-Ton/LabX/actions/runs/33315649208`。
+- GitHub Actions 提供了 Actions 运行时迁移至 Node.js 24 的平台级提示，不影响本次质量检查结果。

@@ -33,5 +33,5 @@
 - 中英文展示排版已经拆分：中文使用独立 CJK 字体栈与安全字距/行高，英文仅保留轻微紧凑效果。
 - X-icon 已成为全站核心视觉符号，通过 CSS 遮罩应用于页头、Hero、模块、作品、编辑页与页脚，并同步更新 favicon 和社交分享图。
 - X-icon 的白黑透明 WebP/GIF 刀划开动画已同步到 `public/x-x-x20/outputs/`，当前仅作为品牌资产入库，尚未接入页面组件。
-- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，当前工作区已配置 `origin`；Vercel 尚未绑定，代码已经具备 Vercel 构建与 GitHub Actions 持续集成配置。
+- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，`main` 已发布并跟踪 `origin/main`，GitHub Actions 质量检查已通过；Vercel 尚未绑定。
 - 首页首屏采用项目优先结构：左侧为紧凑 LABX 标语与快捷入口，右侧直接展示一个主项目和两个次项目；其余项目与领域索引依次位于下方。
