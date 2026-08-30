@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  loadWorks,
   parseWorkSource,
   validateWorkCollection,
 } from "@/lib/content/repository";
 import type { Work } from "@/lib/content/schema";
+import { contentTypes } from "@/lib/site";
 
 const validSource = `---
 id: game-test
@@ -39,6 +41,31 @@ function createWork(overrides: Partial<Work> = {}): Work {
 }
 
 describe("内容仓库", () => {
+  it("为六个领域各提供三个已发布演示项目", () => {
+    const works = loadWorks({ includeDrafts: false });
+
+    expect(works).toHaveLength(contentTypes.length * 3);
+    expect(works.every((work) => work.status === "published")).toBe(true);
+    expect(works.every((work) => work.demo)).toBe(true);
+
+    for (const type of contentTypes) {
+      expect(works.filter((work) => work.type === type)).toHaveLength(3);
+    }
+  });
+
+  it("Life 演示项目只使用明确标注的虚构人格", () => {
+    const lifeWorks = loadWorks({ includeDrafts: false }).filter(
+      (work) => work.type === "life",
+    );
+
+    expect(lifeWorks).toHaveLength(3);
+    expect(
+      lifeWorks.every((work) =>
+        `${work.summary}\n${work.body}`.includes("虚构"),
+      ),
+    ).toBe(true);
+  });
+
   it("解析并规范化 YAML 日期", () => {
     const work = parseWorkSource(validSource, "test.mdx");
 

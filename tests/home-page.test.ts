@@ -13,41 +13,59 @@ const globalStyles = readFileSync(
   "utf8",
 );
 
-describe("首页项目优先级与叙事密度", () => {
-  it("不再渲染宏大叙事区块和页脚巨型 X", () => {
+describe("首页六领域项目索引", () => {
+  it("移除旧首页分类、领域索引和宏大叙事区块", () => {
+    expect(homeSource).not.toContain("核心项目");
+    expect(homeSource).not.toContain("其他项目");
+    expect(homeSource).not.toContain("领域索引");
     expect(homeSource).not.toContain("作品不再孤立，生命不止一次。");
     expect(homeSource).not.toContain("每一次交叉，都是下一条路径的起点。");
-    expect(homeSource).not.toContain('className="vision"');
+    expect(homeSource).not.toContain('className="hero"');
+    expect(homeSource).not.toContain('className="worlds"');
     expect(homeSource).not.toContain('className="x-signature"');
-    expect(homeSource).not.toContain('className="hero-x-stage"');
     expect(footerSource).not.toContain("footer-wordmark-x");
-    expect(globalStyles).not.toContain(".vision {");
-    expect(globalStyles).not.toContain(".x-signature {");
-    expect(globalStyles).not.toContain(".hero-x-stage");
-    expect(globalStyles).not.toContain(".footer-wordmark-x");
+    expect(globalStyles).not.toContain(".core-projects");
+    expect(globalStyles).not.toContain(".core-project-card");
+    expect(globalStyles).not.toContain(".hero {");
+    expect(globalStyles).not.toContain(".worlds {");
   });
 
-  it("首屏右侧直接展示三个核心项目，其他项目随后出现", () => {
-    const coreProjectsPosition = homeSource.indexOf(
-      'className="core-projects"',
-    );
-    const otherProjectsPosition = homeSource.indexOf('id="projects"');
-
-    expect(homeSource).toContain("const coreWorks = featuredWorks.slice(0, 3)");
+  it("按既定顺序生成六个带稳定锚点的领域分区", () => {
+    expect(homeSource).toContain('<h1 className="sr-only">');
+    expect(homeSource).toContain("{modules.map((module) => {");
+    expect(homeSource).toContain('className="home-field"');
+    expect(homeSource).toContain("id={module.type}");
+    expect(homeSource).toContain("aria-labelledby={`${module.type}-title`}");
     expect(homeSource).toContain(
-      'prominence={index === 0 ? "lead" : "compact"}',
+      "<h2 id={`${module.type}-title`}>{module.description}</h2>",
     );
-    expect(coreProjectsPosition).toBeGreaterThan(-1);
-    expect(otherProjectsPosition).toBeGreaterThan(coreProjectsPosition);
-    expect(globalStyles).toContain(
-      "grid-template-columns: minmax(17rem, 0.68fr) minmax(0, 1.45fr)",
-    );
-    expect(globalStyles).toContain("height: min(66svh, 42rem)");
+    expect(homeSource).toContain("APPLICATION FIELD / {module.index}");
   });
 
-  it("标语压缩为两行，并限制为项目标题以下的视觉层级", () => {
-    expect(homeSource).toContain("探索和重构");
-    expect(homeSource).toContain('className="hero-dot"');
-    expect(globalStyles).toContain("font-size: clamp(3.1rem, 5.1vw, 5.6rem)");
+  it("一次加载并分组项目，每个领域最多预览三个最新项目", () => {
+    expect(homeSource).toContain("const homepagePreviewLimit = 3");
+    expect(homeSource.match(/loadWorks\(\)/g)).toHaveLength(1);
+    expect(homeSource).toContain("const worksByType = new Map(");
+    expect(homeSource).toContain("worksByType.get(work.type)!.push(work)");
+    expect(homeSource).toContain(
+      "const previewWorks = moduleWorks.slice(0, homepagePreviewLimit)",
+    );
+    expect(homeSource).toContain("previewWorks.map((work, index) => (");
+    expect(homeSource).toContain("<HomeProjectCard");
+    expect(homeSource).toContain(
+      'previewCount === 3 && index > 0 ? "compact" : "lead"',
+    );
+    expect(homeSource).toContain("暂无公开项目。");
+  });
+
+  it("领域左侧提供叙事、项目总数和完整列表入口", () => {
+    expect(homeSource).toContain("{module.name} / {module.chineseName}");
+    expect(homeSource).toContain("{module.description}");
+    expect(homeSource).toContain("href={`/${module.type}`}");
+    expect(homeSource).toContain("aria-label={`全部${module.chineseName}`}");
+    expect(homeSource).toContain("<span>全部{module.chineseName}</span>");
+    expect(homeSource).toContain(
+      '{String(moduleWorks.length).padStart(2, "0")}',
+    );
   });
 });

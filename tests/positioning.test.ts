@@ -5,18 +5,23 @@ import { describe, expect, it } from "vitest";
 
 const standardPositioning =
   "LabX 是一个独立 AI 实验室，研究并构建 AI 在游戏、声音、叙事、视觉、影像与数字人格中的应用。";
+const aboutHeadline =
+  "独立 AI 实验室，研究并构建 AI 在游戏、声音、叙事、视觉、影像与数字人格中的应用。";
 
 function readProjectFile(path: string) {
   return readFileSync(resolve(process.cwd(), path), "utf8");
 }
 
 describe("LabX 独立 AI 实验室定位", () => {
-  it("首页、站点元数据和 README 使用统一定位", () => {
+  it("站点元数据、README 和 About 使用统一定位", () => {
     const homeSource = readProjectFile("app/page.tsx");
+    const aboutSource = readProjectFile("app/about/page.tsx");
     const siteSource = readProjectFile("lib/site.ts");
     const readmeSource = readProjectFile("README.md");
+    const headlineSource = aboutSource.match(/<h1>([\s\S]*?)<\/h1>/)?.[1];
 
-    expect(homeSource).toContain("独立 AI 实验室");
+    expect(homeSource).toContain("LabX 独立 AI 实验室项目");
+    expect(headlineSource?.replace(/\s+/g, " ").trim()).toBe(aboutHeadline);
     expect(siteSource).toContain(standardPositioning);
     expect(readmeSource).toContain(standardPositioning);
   });
@@ -43,7 +48,8 @@ describe("LabX 独立 AI 实验室定位", () => {
     const siteSource = readProjectFile("lib/site.ts");
     const leadProjectSource = readProjectFile("content/game/echoes-of-us.mdx");
 
-    expect(homeSource).toContain("APPLICATION FIELDS");
+    expect(homeSource).toContain("APPLICATION FIELD / {module.index}");
+    expect(homeSource).toContain("{module.description}");
     expect(modulePageSource).toContain("LABX APPLICATION FIELD");
     expect(modulePageSource).not.toContain("CONTENT DOMAIN");
     expect(modulePageSource).toContain("领域项目");
@@ -56,10 +62,23 @@ describe("LabX 独立 AI 实验室定位", () => {
     expect(leadProjectSource).not.toContain("LabX 内容生态");
   });
 
-  it("本次定位同步不改变首页既有项目分类", () => {
+  it("首页不再按核心与其他项目分类", () => {
     const homeSource = readProjectFile("app/page.tsx");
 
-    expect(homeSource).toContain("核心项目");
-    expect(homeSource).toContain("其他项目");
+    expect(homeSource).not.toContain("核心项目");
+    expect(homeSource).not.toContain("其他项目");
+    expect(homeSource).not.toContain("领域索引");
+    expect(homeSource).toContain("HomeProjectCard");
+  });
+
+  it("About 正文不重复 Hero 中的实验室定位", () => {
+    const aboutSource = readProjectFile("app/about/page.tsx");
+    const articleSource = aboutSource.match(
+      /<article className="editorial-content">([\s\S]*?)<\/article>/,
+    )?.[1];
+
+    expect(articleSource).toBeDefined();
+    expect(articleSource).not.toContain("独立 AI 实验室");
+    expect(articleSource).toContain("我们使用 GitHub");
   });
 });

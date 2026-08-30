@@ -23,19 +23,29 @@ function getRule(selector: string): string {
 }
 
 describe("中文展示字体", () => {
-  it("首页中文主标题使用独立字体、正常字宽与安全行高", () => {
-    const heroTitleRule = getRule(".hero h1");
+  it("首页领域叙事使用独立字体、正常字宽与安全行高", () => {
+    const fieldTitleRule = getRule(".home-field-copy h2");
 
     expect(globalStyles).toContain("--display-cjk:");
-    expect(heroTitleRule).toContain("font-family: var(--display-cjk)");
-    expect(heroTitleRule).toContain("font-stretch: normal");
-    expect(heroTitleRule).toContain("letter-spacing: 0.01em");
-    expect(heroTitleRule).toContain("line-height: 1.06");
+    expect(fieldTitleRule).toContain("font-family: var(--display-cjk)");
+    expect(fieldTitleRule).toContain("font-stretch: normal");
+    expect(fieldTitleRule).toContain("letter-spacing: 0.01em");
+    expect(fieldTitleRule).toContain("line-height:");
+    expect(fieldTitleRule).not.toMatch(/letter-spacing:\s*-/);
+  });
+
+  it("About 长定位标题使用专用紧凑尺度", () => {
+    const statementTitleRule = getRule(".editorial-hero--statement h1");
+
+    expect(statementTitleRule).toContain("max-width:");
+    expect(statementTitleRule).toContain("font-size: clamp(");
+    expect(statementTitleRule).not.toContain("10rem");
   });
 
   it.each([
     ".work-visual-title",
     ".work-card-meta h3",
+    ".home-project-card-title h3",
     ".list-heading h2",
     ".work-detail-heading h1",
     ".action-link",

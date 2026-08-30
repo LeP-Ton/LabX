@@ -24,7 +24,7 @@ const footerSource = readFileSync(
   "utf8",
 );
 
-/** 提取品牌组合规则，防止 LABX 文字重新压过 X 主符号。 */
+/** 提取品牌组合规则，防止 LABX 文字与口号重新压过 X 主符号。 */
 function getRule(selector: string): string {
   const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const matchedRule = globalStyles.match(
@@ -58,9 +58,11 @@ describe("XMark 品牌图标", () => {
     expect(mark).toHaveAttribute("aria-hidden", "true");
   });
 
-  it("页头以大号 X 为主符号，文字标签统一为小号 LABX", () => {
+  it("页头以大号 X 为主符号，LABX 与口号组成两行文字栈", () => {
     const headerLabel = getRule(".wordmark-label");
     const headerX = getRule(".wordmark-x");
+    const headerCopy = getRule(".wordmark-copy");
+    const headerSlogan = getRule(".wordmark-slogan");
     const footerLabel = getRule(".footer-wordmark-label");
 
     expect(headerLabel).toContain("font-size: 0.64rem");
@@ -68,10 +70,16 @@ describe("XMark 品牌图标", () => {
     expect(headerLabel).toContain("color: var(--muted)");
     expect(headerX).toContain("width: 3rem");
     expect(headerX).toContain("mask-size: 135%");
+    expect(headerCopy).toContain("flex-direction: column");
+    expect(headerSlogan).toContain("white-space: nowrap");
     expect(footerLabel).toContain("font-size: clamp(0.64rem, 0.8vw, 0.78rem)");
     expect(footerLabel).toContain("color: var(--muted)");
+    expect(headerSource).toContain("modules, siteConfig");
     expect(headerSource).toContain(
       '<span className="wordmark-label">LABX</span>',
+    );
+    expect(headerSource).toContain(
+      '<span className="wordmark-slogan">{siteConfig.slogan}</span>',
     );
     expect(footerSource).toContain(
       '<p className="footer-wordmark-label">LABX</p>',
@@ -83,5 +91,12 @@ describe("XMark 品牌图标", () => {
       '<p className="footer-wordmark-label">LAB</p>',
     );
     expect(globalStyles).not.toContain(".footer-wordmark-x");
+  });
+
+  it("页头六领域链接统一指向首页锚点", () => {
+    expect(headerSource).toContain('aria-label="应用领域"');
+    expect(headerSource).toContain("href={`/#${module.type}`}");
+    expect(headerSource).not.toContain("href={`/${module.type}`}");
+    expect(headerSource).toContain('className="header-utilities"');
   });
 });

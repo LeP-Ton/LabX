@@ -6,6 +6,8 @@
 
 ## 当前变更文档
 
+`workflow/20260830231331-expand-demo-content-across-fields.md` - 为六个应用领域各补充两个结构化占位项目，使首页每个领域都能展示完整的三项目布局；继续维护演示项目、跨领域关系或首页项目密度时读取。
+`workflow/20260830225038-refactor-homepage-into-anchored-ai-fields.md` - 将首页重构为六个应用领域锚点分区，把品牌口号移入 Header，并按领域展示叙事与项目预览；继续调整首页信息架构、锚点导航或移动端 Header 时读取。
 `workflow/20260830215124-publish-independent-ai-lab-first-version.md` - 将 LabX 的公开定位统一为独立 AI 实验室，把六模块表达为 AI 应用领域，并创建公开 GitHub 仓库首版；维护品牌定位、公开元数据或 GitHub 发布流程时读取。
 `workflow/20260830195628-refactor-project-first-homepage.md` - 将首页重构为左侧紧凑品牌说明、右侧三项核心项目的首屏工作台，统一 LABX 字标并把项目目录前置；继续调整首页项目优先级、首屏密度或品牌字标时读取。
 `workflow/20260830192517-remove-grand-narrative-sections.md` - 删除首页两个宏大叙事区和页脚巨型 X，压缩相邻留白并确立克制、实验导向的极客叙事；继续调整首页内容密度或品牌语气时读取。
@@ -34,4 +36,5 @@
 - X-icon 已成为全站核心视觉符号，通过 CSS 遮罩应用于页头、Hero、模块、作品、编辑页与页脚，并同步更新 favicon 和社交分享图。
 - X-icon 的白黑透明 WebP/GIF 刀划开动画已同步到 `public/x-x-x20/outputs/`，当前仅作为品牌资产入库，尚未接入页面组件。
 - GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，`main` 已发布并跟踪 `origin/main`，GitHub Actions 质量检查已通过；Vercel 尚未绑定。
-- 首页首屏采用项目优先结构：左侧为紧凑 LABX 标语与快捷入口，右侧直接展示一个主项目和两个次项目；其余项目与领域索引依次位于下方。
+- Header 在 `LABX` 下方显示“探索和重构一切”，六领域菜单统一跳转首页 `#game` 至 `#life` 锚点；首页六段均采用左侧研究叙事、右侧最多三个项目预览的结构。
+- 六个应用领域现各有三个已发布演示项目，共十八项；新增条目使用占位入口并通过稳定 ID 建立跨领域关联，`Life` 条目均为明确标注的虚构人格。

@@ -13,10 +13,13 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main id="main-content">
-      <header className="editorial-hero">
+      <header className="editorial-hero editorial-hero--statement">
         <XMark className="editorial-x-mark" />
         <p className="eyebrow">ABOUT LABX</p>
-        <h1>独立研究，持续构建。</h1>
+        <h1>
+          独立 AI 实验室，研究并构建 AI
+          在游戏、声音、叙事、视觉、影像与数字人格中的应用。
+        </h1>
       </header>
 
       <div className="editorial-layout">
@@ -26,8 +29,7 @@ export default function AboutPage() {
         <article className="editorial-content">
           <h2>我们在做什么</h2>
           <p>
-            LabX 是一个独立 AI 实验室，研究并构建 AI
-            在游戏、声音、叙事、视觉、影像与数字人格中的应用。我们使用 GitHub
+            我们使用 GitHub
             记录项目版本、作者、来源和关联，让实验能够被理解、复用并持续迭代。
           </p>
           <h2>应用领域</h2>

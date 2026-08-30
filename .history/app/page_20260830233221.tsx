@@ -7,7 +7,7 @@ import { loadWorks } from "@/lib/content/repository";
 import type { Work } from "@/lib/content/schema";
 import { modules } from "@/lib/site";
 
-const homepagePreviewLimit = 3;
+const homepagePreviewLimit = 4;
 
 export default function HomePage() {
   const works = loadWorks();

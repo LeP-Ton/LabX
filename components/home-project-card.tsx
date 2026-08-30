@@ -5,46 +5,46 @@ import { WorkVisual } from "@/components/work-visual";
 import type { Work } from "@/lib/content/schema";
 import { modules } from "@/lib/site";
 
-interface CoreProjectCardProps {
+interface HomeProjectCardProps {
   work: Work;
   index: string;
   prominence: "lead" | "compact";
 }
 
-/** 首屏项目卡只保留决策所需信息，让项目本身成为首页第一视觉层级。 */
-export function CoreProjectCard({
+/** 首页领域项目卡只保留浏览项目所需信息，不再引入“核心项目”分类。 */
+export function HomeProjectCard({
   work,
   index,
   prominence,
-}: CoreProjectCardProps) {
+}: HomeProjectCardProps) {
   const moduleDefinition = modules.find((module) => module.type === work.type)!;
 
   return (
     <article
-      className={`core-project-card core-project-card--${prominence}`}
+      className={`home-project-card home-project-card--${prominence}`}
       data-prominence={prominence}
     >
       <Link
         href={`/${work.type}/${work.slug}`}
-        aria-label={`查看核心项目：${work.title}`}
+        aria-label={`查看项目：${work.title}`}
       >
         <WorkVisual
           type={work.type}
           title={work.title}
           index={moduleDefinition.index}
         />
-        <div className="core-project-card-copy">
-          <p className="core-project-card-label">
+        <div className="home-project-card-copy">
+          <p className="home-project-card-label">
             <span>PROJECT / {index}</span>
             <span>
               {moduleDefinition.name} / {moduleDefinition.chineseName}
             </span>
           </p>
-          <div className="core-project-card-title">
+          <div className="home-project-card-title">
             <h3>{work.title}</h3>
             <ArrowUpRight aria-hidden="true" />
           </div>
-          <p className="core-project-card-summary">{work.summary}</p>
+          <p className="home-project-card-summary">{work.summary}</p>
         </div>
       </Link>
     </article>
