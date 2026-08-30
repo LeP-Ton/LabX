@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1254"
+     height="1254"
+     viewBox="0 0 1254 1254"
+     role="img"
+     aria-label="沿两条斜线轴对称并严格居中的白色四角星">
+  <!-- 画布几何中心为 (627, 627)。 -->
+  <rect width="1254" height="1254" fill="#000000"/>
+
+  <!--
+    八顶点按顺时针排列：
+    左上短尖端 → 上内凹角 → 右上长尖端 → 右内凹角 →
+    右下短尖端 → 下内凹角 → 左下长尖端 → 左内凹角。
+
+    右上与左下关于中心互为反点，左上与右下同样互为反点；
+    四个内凹角组成以画布中心为中心的正方形。
+  -->
+  <polygon
+    points="310,310 627,525 1052,202 729,627 944,944 627,729 202,1052 525,627"
+    fill="#FFFFFF"
+    shape-rendering="geometricPrecision"/>
+</svg>

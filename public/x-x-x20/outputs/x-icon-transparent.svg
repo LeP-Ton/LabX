@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254">
+  <!-- 沿用用户提供的 slim 矢量轮廓，移除底色后作为主题自适应遮罩。 -->
+  <polygon
+    points="285,285 627,557 1090,164 697,627 969,969 627,697 164,1090 557,627"
+    fill="#fff"
+    shape-rendering="geometricPrecision"
+  />
+</svg>

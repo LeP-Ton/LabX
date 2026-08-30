@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1254"
+     height="1254"
+     viewBox="0 0 1254 1254"
+     role="img"
+     aria-label="沿两条斜线轴对称并严格居中的细长白色四角星">
+  <!-- 画布中心为 (627, 627)，所有相反顶点均关于该点成中心对称。 -->
+  <rect width="1254" height="1254" fill="#000000"/>
+
+  <!--
+    相比上一版：内凹角半径由 102 缩至 70，使斜线更细；
+    长轴尖端半径由约 601 增至约 655，短轴尖端半径由约 448 增至约 484。
+  -->
+  <polygon
+    points="285,285 627,557 1090,164 697,627 969,969 627,697 164,1090 557,627"
+    fill="#FFFFFF"
+    shape-rendering="geometricPrecision"/>
+</svg>

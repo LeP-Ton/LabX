@@ -1,0 +1,9 @@
+.agentdocs/
+AGENTS.md
+CLAUDE.md
+pnpm-lock.yaml
+public/
+.next/
+node_modules/
+playwright-report/
+test-results/
