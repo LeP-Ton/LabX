@@ -44,7 +44,9 @@ test("六个应用领域均可访问", async ({ page }) => {
     await page.goto(`/${moduleType}`);
     await expect(page.getByText("LABX APPLICATION FIELD")).toBeVisible();
     await expect(page.locator("main h1")).toBeVisible();
-    await expect(page.getByText("演示内容", { exact: true })).toBeVisible();
+    await expect(
+      page.locator("article.work-card").filter({ hasText: "演示内容" }).first(),
+    ).toBeVisible();
   }
 });
 

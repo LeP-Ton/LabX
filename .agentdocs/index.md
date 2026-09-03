@@ -6,6 +6,7 @@
 
 ## 当前变更文档
 
+`workflow/20260903210854-fix-module-e2e-demo-card-locator.md` - 修复领域页在拥有多个演示项目时触发的 Playwright 严格定位冲突，使 1、2、3 项内容布局都能通过远端质量检查；维护领域页 E2E 或演示内容数量时读取。
 `workflow/20260903205305-publish-labx-to-github-pages.md` - 为 Next.js 增加条件式静态导出、GitHub Pages 子路径与 SEO 适配，并通过 GitHub Actions 自动发布公开站点；维护 Pages 部署、公开 URL 或静态资源路径时优先读取。
 `workflow/20260830231331-expand-demo-content-across-fields.md` - 为六个应用领域各补充两个结构化占位项目，使首页每个领域都能展示完整的三项目布局；继续维护演示项目、跨领域关系或首页项目密度时读取。
 `workflow/20260830225038-refactor-homepage-into-anchored-ai-fields.md` - 将首页重构为六个应用领域锚点分区，把品牌口号移入 Header，并按领域展示叙事与项目预览；继续调整首页信息架构、锚点导航或移动端 Header 时读取。
