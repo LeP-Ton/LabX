@@ -2,11 +2,24 @@ import type { Metadata } from "next";
 
 import { SiteFooter } from "@/components/site-footer";
 import { XMark } from "@/components/x-mark";
+import { absoluteUrl, siteConfig, socialPreviewImage } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "隐私说明",
   description: "LabX 独立 AI 实验室网站的基础访问分析与隐私边界。",
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: absoluteUrl("/privacy/") },
+  openGraph: {
+    title: `隐私说明 — ${siteConfig.name}`,
+    description: "LabX 独立 AI 实验室网站的基础访问分析与隐私边界。",
+    url: absoluteUrl("/privacy/"),
+    images: [socialPreviewImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `隐私说明 — ${siteConfig.name}`,
+    description: "LabX 独立 AI 实验室网站的基础访问分析与隐私边界。",
+    images: [socialPreviewImage.url],
+  },
 };
 
 export default function PrivacyPage() {
@@ -19,7 +32,10 @@ export default function PrivacyPage() {
       </header>
       <article className="privacy-content">
         <h2>基础访问分析</h2>
-        <p>本站使用匿名访问统计了解页面访问情况，用于改善内容结构和体验。</p>
+        <p>
+          当前 GitHub Pages
+          版本暂未启用访问统计。后续如接入分析服务，将只使用匿名数据改善内容结构和体验。
+        </p>
         <h2>外链转化事件</h2>
         <p>
           当你点击作品的观看、收听、购买、试玩或关注入口时，本站只记录作品

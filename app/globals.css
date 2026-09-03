@@ -8,7 +8,6 @@
   --soft: #e7e6e1;
   --line: #b9b8b2;
   --site-header-height: 5rem;
-  --x-icon: url("/x-x-x20/outputs/x-icon-transparent.svg");
   --display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   /* 中文不使用窄体拉伸，避免字体回退后仍继承拉丁字母的压缩参数。 */
   --display-cjk:

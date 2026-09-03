@@ -14,6 +14,7 @@ import {
   loadWorks,
 } from "@/lib/content/repository";
 import {
+  absoluteUrl,
   contentTypes,
   modules,
   siteConfig,
@@ -43,7 +44,7 @@ export async function generateMetadata({
   const work = getWorkByRoute(module, slug);
   if (!work) return { title: "作品不存在" };
 
-  const url = `/${work.type}/${work.slug}`;
+  const url = absoluteUrl(`/${work.type}/${work.slug}/`);
   return {
     title: work.title,
     description: work.summary,

@@ -63,10 +63,40 @@ export const modules: ModuleDefinition[] = [
   },
 ];
 
+function normalizeBasePath(value: string | undefined) {
+  if (!value || value === "/") return "";
+  return `/${value.replace(/^\/+|\/+$/g, "")}`;
+}
+
+const configuredSiteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+).replace(/\/+$/, "");
+
 export const siteConfig = {
   name: "LabX",
   description:
     "LabX 是一个独立 AI 实验室，研究并构建 AI 在游戏、声音、叙事、视觉、影像与数字人格中的应用。",
   slogan: "探索和重构一切",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: configuredSiteUrl,
+  basePath: normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH),
+};
+
+/** 为 CSS 等不会被 Next.js 自动处理的 public 资源补上部署子路径。 */
+export function withBasePath(pathname: string, basePath = siteConfig.basePath) {
+  const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return `${normalizeBasePath(basePath)}${normalizedPath}`;
+}
+
+/** 生成保留 GitHub Pages 项目子路径的绝对 URL。 */
+export function absoluteUrl(pathname = "/", siteUrl = siteConfig.url) {
+  const normalizedSiteUrl = `${siteUrl.replace(/\/+$/, "")}/`;
+  const relativePath = pathname.replace(/^\/+/, "");
+  return new URL(relativePath, normalizedSiteUrl).toString();
+}
+
+export const socialPreviewImage = {
+  url: absoluteUrl("/og.png"),
+  width: 1731,
+  height: 909,
+  alt: "LabX — 探索和重构一切",
 };

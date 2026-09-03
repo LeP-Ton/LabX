@@ -6,7 +6,7 @@
 - 产品形态：独立 AI 实验室及其公开项目入口。
 - 核心目标：研究并构建 AI 在游戏、声音、叙事、视觉、影像与数字人格中的应用，通过 GitHub 保存、组织、关联和持续管理实验项目。
 - 传播路径：通过哔哩哔哩（B站）、抖音、小红书等媒体发布和传播实验内容，将受众引导至 LabX，并形成项目关注与内容转化。
-- 当前阶段：实验室网站 MVP 已完成，实现内容发布、跨模块关联、主题切换、SEO、匿名转化分析与自动化测试。
+- 当前阶段：实验室网站 MVP 已完成并通过 GitHub Pages 公开发布，实现内容发布、跨模块关联、主题切换、SEO、匿名转化事件适配与自动化测试。
 
 ## 品牌与视觉
 
@@ -36,11 +36,12 @@
 - 内容管理：GitHub 仓库中的 MDX 与结构化元数据，使用 Zod 在构建期校验。
 - 包管理器：pnpm。
 - 测试体系：Vitest、Testing Library 与 Playwright。
-- 部署平台：Vercel；`main` 分支用于生产发布，其他分支用于预览。
+- 部署平台：GitHub Pages 为当前公开环境，`main` 分支通过 GitHub Actions 自动发布；Vercel 保留为后续可选部署平台。
 - 逻辑架构：以 LabX 独立 AI 实验室网站为统一入口，以 `Game`、`Music`、`Book`、`Art`、`Movie`、`Life` 为应用领域，以 GitHub 仓库作为实验项目的工程化保存和管理载体。
 - 数据与内容模型应显式表达内容来源、版本、作者、所属应用领域、跨领域依赖和复用关系。
 - 音乐、视频、模型等大文件不直接进入 Git 仓库，仓库仅保存元数据、轻量资源与 HTTPS 外链。
 - 生产环境仅发布 `published` 内容；草稿允许在本地开发和 Vercel 预览环境中验证。
+- GitHub Pages 构建使用 Next.js 静态导出，并通过部署环境注入正式站点地址与 `/LabX` 子路径；本地开发仍运行在根路径。
 - `Life` 内容必须使用虚构人格或获得明确授权的数据，不得提交真实个人的敏感信息。
 
 ## 运行方式
@@ -52,7 +53,7 @@
 - 生产构建：`pnpm build`。
 - 本地生产预览：`pnpm start`（需先执行 `pnpm build`）。
 - 全量验收：`pnpm format:check`、`pnpm lint`、`pnpm typecheck`、`pnpm test`、`pnpm build` 与 `pnpm test:e2e`。
-- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，当前工作区已配置 `origin`；Vercel 尚未绑定，发布时需连接该仓库并将 `main` 配置为生产分支。
+- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，公开站点为 `https://lep-ton.github.io/LabX/`；当前工作区已配置 `origin`，推送 `main` 会触发质量检查和 GitHub Pages 发布。
 
 ## 协作与文档约定
 

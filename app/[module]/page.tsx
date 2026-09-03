@@ -6,9 +6,11 @@ import { WorkCard } from "@/components/work-card";
 import { XMark } from "@/components/x-mark";
 import { getWorksByType } from "@/lib/content/repository";
 import {
+  absoluteUrl,
   contentTypes,
   modules,
   siteConfig,
+  socialPreviewImage,
   type ContentType,
 } from "@/lib/site";
 
@@ -37,11 +39,18 @@ export async function generateMetadata({
   return {
     title,
     description: definition.description,
-    alternates: { canonical: `/${definition.type}` },
+    alternates: { canonical: absoluteUrl(`/${definition.type}/`) },
     openGraph: {
       title: `${title} — ${siteConfig.name}`,
       description: definition.description,
-      url: `/${definition.type}`,
+      url: absoluteUrl(`/${definition.type}/`),
+      images: [socialPreviewImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} — ${siteConfig.name}`,
+      description: definition.description,
+      images: [socialPreviewImage.url],
     },
   };
 }

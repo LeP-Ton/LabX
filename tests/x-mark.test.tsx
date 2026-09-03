@@ -15,6 +15,10 @@ const globalStyles = readFileSync(
   resolve(process.cwd(), "app/globals.css"),
   "utf8",
 );
+const xMarkSource = readFileSync(
+  resolve(process.cwd(), "components/x-mark.tsx"),
+  "utf8",
+);
 const headerSource = readFileSync(
   resolve(process.cwd(), "components/site-header.tsx"),
   "utf8",
@@ -38,8 +42,11 @@ function getRule(selector: string): string {
 describe("XMark 品牌图标", () => {
   it("使用透明 SVG 矢量资源作为主题遮罩", () => {
     expect(existsSync(iconPath)).toBe(true);
-    expect(globalStyles).toContain(
+    expect(globalStyles).not.toContain(
       '--x-icon: url("/x-x-x20/outputs/x-icon-transparent.svg")',
+    );
+    expect(xMarkSource).toContain(
+      'withBasePath("/x-x-x20/outputs/x-icon-transparent.svg")',
     );
     expect(globalStyles).toContain(
       "mask: var(--x-icon) center / contain no-repeat",
@@ -56,6 +63,9 @@ describe("XMark 品牌图标", () => {
     const mark = screen.getByTestId("x-mark");
     expect(mark).toHaveClass("x-mark", "test-x-mark");
     expect(mark).toHaveAttribute("aria-hidden", "true");
+    expect(mark.style.getPropertyValue("--x-icon")).toBe(
+      'url("/x-x-x20/outputs/x-icon-transparent.svg")',
+    );
   });
 
   it("页头以大号 X 为主符号，LABX 与口号组成两行文字栈", () => {

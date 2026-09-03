@@ -2,12 +2,29 @@ import type { Metadata } from "next";
 
 import { SiteFooter } from "@/components/site-footer";
 import { XMark } from "@/components/x-mark";
-import { modules } from "@/lib/site";
+import {
+  absoluteUrl,
+  modules,
+  siteConfig,
+  socialPreviewImage,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "关于 LabX",
   description: "了解 LabX 作为独立 AI 实验室的研究方向、项目方法与数据边界。",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: absoluteUrl("/about/") },
+  openGraph: {
+    title: `关于 LabX — ${siteConfig.name}`,
+    description: "了解 LabX 作为独立 AI 实验室的研究方向、项目方法与数据边界。",
+    url: absoluteUrl("/about/"),
+    images: [socialPreviewImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `关于 LabX — ${siteConfig.name}`,
+    description: "了解 LabX 作为独立 AI 实验室的研究方向、项目方法与数据边界。",
+    images: [socialPreviewImage.url],
+  },
 };
 
 export default function AboutPage() {

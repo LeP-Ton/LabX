@@ -6,6 +6,7 @@
 
 ## 当前变更文档
 
+`workflow/20260903205305-publish-labx-to-github-pages.md` - 为 Next.js 增加条件式静态导出、GitHub Pages 子路径与 SEO 适配，并通过 GitHub Actions 自动发布公开站点；维护 Pages 部署、公开 URL 或静态资源路径时优先读取。
 `workflow/20260830231331-expand-demo-content-across-fields.md` - 为六个应用领域各补充两个结构化占位项目，使首页每个领域都能展示完整的三项目布局；继续维护演示项目、跨领域关系或首页项目密度时读取。
 `workflow/20260830225038-refactor-homepage-into-anchored-ai-fields.md` - 将首页重构为六个应用领域锚点分区，把品牌口号移入 Header，并按领域展示叙事与项目预览；继续调整首页信息架构、锚点导航或移动端 Header 时读取。
 `workflow/20260830215124-publish-independent-ai-lab-first-version.md` - 将 LabX 的公开定位统一为独立 AI 实验室，把六模块表达为 AI 应用领域，并创建公开 GitHub 仓库首版；维护品牌定位、公开元数据或 GitHub 发布流程时读取。
@@ -29,12 +30,13 @@
 - `Life` 面向数字永生，通过人格、记忆和行为特征丰富虚拟世界中的 NPC 个性。
 - 内容通过哔哩哔哩、抖音、小红书等媒体传播，并引导用户消费与转化。
 - 品牌口号为“探索和重构一切”，采用可切换的黑白色极简主题。
-- 前端采用 Next.js、React、TypeScript、Tailwind CSS，内容采用 MDX + Zod，包管理器使用 pnpm，部署目标为 Vercel。
+- 前端采用 Next.js、React、TypeScript、Tailwind CSS，内容采用 MDX + Zod，包管理器使用 pnpm；当前公开环境为 GitHub Pages，Vercel 保留为后续可选平台。
 - 实验室网站 MVP 已完成：六个应用领域均有演示项目，内容详情与跨领域关联可用，黑白主题、SEO、匿名外链事件和隐私说明已经接入。
 - 依赖与锁文件已经生成；格式、Lint、类型、单元/组件测试、生产构建、端到端测试及 Lighthouse 审计均已通过。
 - 中英文展示排版已经拆分：中文使用独立 CJK 字体栈与安全字距/行高，英文仅保留轻微紧凑效果。
 - X-icon 已成为全站核心视觉符号，通过 CSS 遮罩应用于页头、Hero、模块、作品、编辑页与页脚，并同步更新 favicon 和社交分享图。
 - X-icon 的白黑透明 WebP/GIF 刀划开动画已同步到 `public/x-x-x20/outputs/`，当前仅作为品牌资产入库，尚未接入页面组件。
-- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，`main` 已发布并跟踪 `origin/main`，GitHub Actions 质量检查已通过；Vercel 尚未绑定。
+- GitHub 公开仓库为 `https://github.com/LeP-Ton/LabX`，公开站点为 `https://lep-ton.github.io/LabX/`；`main` 推送后由 GitHub Actions 完成质量检查与 Pages 静态发布。
+- GitHub Pages 构建通过 `NEXT_PUBLIC_SITE_URL` 和 `NEXT_PUBLIC_BASE_PATH` 适配 `/LabX` 项目子路径；本地开发和普通构建继续使用根路径。
 - Header 在 `LABX` 下方显示“探索和重构一切”，六领域菜单统一跳转首页 `#game` 至 `#life` 锚点；首页六段均采用左侧研究叙事、右侧最多三个项目预览的结构。
 - 六个应用领域现各有三个已发布演示项目，共十八项；新增条目使用占位入口并通过稳定 ID 建立跨领域关联，`Life` 条目均为明确标注的虚构人格。

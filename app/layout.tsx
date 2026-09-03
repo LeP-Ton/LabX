@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
 import { SiteHeader } from "@/components/site-header";
-import { siteConfig } from "@/lib/site";
+import { absoluteUrl, siteConfig, socialPreviewImage } from "@/lib/site";
 
 import "./globals.css";
 
@@ -19,35 +19,28 @@ const themeBootScript = `
 })();`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(absoluteUrl()),
   title: {
     default: `${siteConfig.name} — ${siteConfig.slogan}`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  alternates: { canonical: "/" },
+  alternates: { canonical: absoluteUrl() },
   openGraph: {
     type: "website",
     locale: "zh_CN",
     siteName: siteConfig.name,
     title: `${siteConfig.name} — ${siteConfig.slogan}`,
     description: siteConfig.description,
-    url: "/",
-    images: [
-      {
-        url: "/og.png",
-        width: 1731,
-        height: 909,
-        alt: "LabX — 探索和重构一切",
-      },
-    ],
+    url: absoluteUrl(),
+    images: [socialPreviewImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.slogan}`,
     description: siteConfig.description,
-    images: ["/og.png"],
+    images: [socialPreviewImage.url],
   },
 };
 
