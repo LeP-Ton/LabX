@@ -26,7 +26,7 @@
 - [x] 同步 README、隐私说明、项目认知与文档索引。
 - [x] 完成本地普通构建和 Pages 模式静态构建。
 - [x] 恢复 GitHub CLI 授权并启用 Pages。
-- [ ] 推送 `main`、等待部署成功并验证公开网址。
+- [x] 推送 `main`、等待部署成功并验证公开网址。
 
 ## 当前进展
 
@@ -35,7 +35,9 @@
 - 导出文件未发现 `localhost:3000`、丢失 `/LabX` 的公开页面 URL 或错误的 X SVG 根路径。
 - Sitemap 包含 27 个公开内容 URL，robots 指向 `https://lep-ton.github.io/LabX/sitemap.xml`。
 - GitHub CLI 已重新授权为 `LeP-Ton`，仓库 Pages 已创建并使用 GitHub Actions 工作流作为发布源。
-- 远程发布正在等待本次变更提交并推送。
+- 发布提交 `9e2d1dc` 与后续 E2E 修复提交 `dfad166` 已推送到 `main`。
+- GitHub Pages 工作流 `33759904311` 与质量检查工作流 `33759904364` 均已成功完成。
+- `https://lep-ton.github.io/LabX/`、代表性详情页、X SVG、robots 与 sitemap 均通过公网 HTTP 200 验证。
 
 ## 关键风险
 
@@ -802,4 +804,4 @@ index 0000000..d6a73ce
 - 优先级：高
 - 操作步骤：启用 GitHub Actions 作为 Pages 来源，推送 `main`，等待部署工作流结束并请求正式网址。
 - 预期结果：`https://lep-ton.github.io/LabX/` 返回成功状态，静态资源与代表性详情路由可访问。
-- 是否通过：待 GitHub 授权与远程部署完成后更新。
+- 是否通过：通过；Pages 为公开 HTTPS 站点，最新部署工作流 `33759904311` 成功，五个公网验收地址均返回 HTTP 200。
